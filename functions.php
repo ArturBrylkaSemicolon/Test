@@ -19,6 +19,7 @@ function test_scripts() {
 }
 add_action( 'wp_enqueue_scripts', 'test_scripts' );
 
+add_action( 'after_setup_theme', 'test_theme_config' );
 function test_theme_config(){
 
   add_theme_support( 'woocommerce', array(
@@ -35,7 +36,7 @@ function test_theme_config(){
   ) );
 
 }
-add_action( 'after_setup_theme', 'test_theme_config', 0 );
+
 
 /**
  * Register Custom Navigation Walker
