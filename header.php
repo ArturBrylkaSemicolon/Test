@@ -34,9 +34,4 @@
                 </div>
             </nav>
             </header>                   
-            
-            <section class="search">
-                <div class="top-section-text">Text</div>
-                <div class="search-inputs">Search Inputs</div>
-            </section>
         </div>

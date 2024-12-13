@@ -8,15 +8,34 @@
  * @since Twenty Twenty-Four 1.0
  */
 
-$theme_version = wp_get_theme()->get( 'Version' );
-
 function test_scripts() {
+
+  $theme_version = wp_get_theme()->get( 'Version' );
+
 	wp_enqueue_style( 'main-style', get_stylesheet_uri(), array(), $theme_version );
-	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/inc/css/bootstrap.css', array(), 20141119 );
-	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/inc/js/bootstrap.min.js', array('jquery'), '20120206', true );
+	wp_enqueue_style( 'bootstrap', get_stylesheet_directory_uri() . '/inc/css/bootstrap.css', array(), '5.2.1', 'all');
+	wp_enqueue_script( 'bootstrap', get_template_directory_uri() . '/inc/js/bootstrap.min.js', array('jquery'), '5.2.1', true );
 
 }
 add_action( 'wp_enqueue_scripts', 'test_scripts' );
+
+function test_theme_config(){
+
+  add_theme_support( 'woocommerce', array(
+    'thumbnail_image_width' => 150,
+		'single_image_width'    => 300,
+        'product_grid'          => array(
+            'default_rows'    => 3,
+            'min_rows'        => 2,
+            'max_rows'        => 8,
+            'default_columns' => 4,
+            'min_columns'     => 2,
+            'max_columns'     => 5,
+        ),
+  ) );
+
+}
+add_action( 'after_setup_theme', 'test_theme_config', 0 );
 
 /**
  * Register Custom Navigation Walker
@@ -104,3 +123,4 @@ class bootstrap_5_wp_nav_menu_walker extends Walker_Nav_menu
 }
 // register a new menu
 register_nav_menu('main-menu', 'Main menu');
+
